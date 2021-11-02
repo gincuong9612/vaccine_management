@@ -1,6 +1,11 @@
 package src.retarded;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,13 +106,11 @@ public class InjectionService {
                 System.out.println("Injection ID is not existed!! Please try again");
                 return;
             }
-            if (injection != null) {
-                if (this.isInjectable(injection)) {
-                    break;
-                }
-                System.out.println("This student is fully vaccinated");
-                return;
+            if (this.isInjectable(injection)) {
+                break;
             }
+            System.out.println("This student is fully vaccinated");
+            return;
         }
 
         while (true) {
@@ -141,18 +144,130 @@ public class InjectionService {
     }
 
     public void delete() {
+        Injection i = this.getFromInput(false);
+        if (i == null) {
+                return;
+        }
+        if (Utilities.inputSelection("Are you sure want to delete")) {
+            this.injections.remove(i);
+        }
+        System.out.println("Delete injection '" + i.getId() + "' successfully");
     }
 
     public void search() {
+        Student student = students.getFromInput(false);
+        if (student == null) {
+            return;
+        }
+        Injection t = this.getByStudent(student.getId());
+        if (t == null) {
+            System.out.println("There is no injection.");
+            return;
+        }
+        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
+        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|----------------------------------|");
+        System.out.println(t);
     }
 
     public void searchWithName() {
+        List<Student> list = students.getByNameFromInput(false);
+        if (list == null) {
+            return;
+        }
+
+        List<Injection> t = new ArrayList<>();
+
+        for (var student : list) {
+            if (student != null) {
+                System.out.println(student.getId() + " " + student.getName());
+            }
+            t.add(this.getByStudent(student.getId()));
+        }
+
+        if (t.isEmpty()) {
+            System.out.println("There is no injection");
+            return;
+        }
+
+        if (injections.stream().allMatch(i -> i == null)) {
+            System.out.println("There is no injection");
+            return;
+        }
+
+        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
+        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|----------------------------------|");
+
+        for (Injection i : injections) {
+            if (i != null)
+                System.out.println(i);
+        }
     }
 
     public void save() {
+        try {
+            injectionContainer.createNewFile();
+            FileOutputStream fos = new FileOutputStream(injectionContainer);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            for (var injection : injections) {
+                oos.writeObject(injection);
+            }
+
+            oos.close();
+            fos.close();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void encryptData() {
+        try {
+            injectionEncryptedContainer.createNewFile();
+            FileWriter fw = new FileWriter(injectionEncryptedContainer);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            int i = 0;
+            for (var injection : injections) {
+                bw.write(Utilities.md5Encode(injection.toString()));
+                bw.write("\n");
+                System.out.println("ENCODING  (" + ++i + "/" + injections.size() + ") OK");
+            }
+
+            bw.close();
+            fw.close();
+            System.out.println("Encoding and saving completed");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public Injection getFromInput(boolean repeat) {
+        while (true) {
+            String id = Utilities.inputFilledString("Injection ID");
+            Injection i = this.get(id);
+            if (i != null) {
+                return i;
+            }
+            System.out.println("Injection is not existed");
+            if (!repeat) {
+                return null;
+            }
+        }
+    }
+
+    public void show() {
+
+        if (injections.isEmpty()) {
+            System.out.println("Nothing to print");
+            return;
+        }
+        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
+        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|----------------------------------|");
+
+        for (Injection i : injections) {
+            if (i != null)
+                System.out.println(i);
+        }
     }
 
 }

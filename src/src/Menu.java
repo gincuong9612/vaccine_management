@@ -73,8 +73,6 @@ public class Menu {
     public void selectionQuery() {
         int selection = -1;
 
-        this.preTask();
-
         boolean isExceptionRised = false;
         while (selection != 0) {
             try {
@@ -101,8 +99,6 @@ public class Menu {
 
         }
 
-        this.postTask();
-
         System.out.println("Good bye.");
     }
 
@@ -124,14 +120,6 @@ public class Menu {
 
     // ========================================================================
 
-    public void preTask() {
-
-    }
-
-    public void postTask() {
-
-    }
-
     public void afterFunction() {
         InjectionController.getInstance().initData();
     }
@@ -144,7 +132,7 @@ public class Menu {
     public void s2(int pseudo) {
         this.vaccines.show();
         System.out.println();
-        this.student.show();
+        this.students.show();
     }
     public void s3(int pseudo) {
         this.injections.add();

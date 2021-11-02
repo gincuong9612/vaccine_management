@@ -68,5 +68,25 @@ public class StudentService {
             }
         }
     }
+    public List<Student> getByNameFromInput(boolean repeat) {
+        while (true) {
+            String name = Utilities.inputFilledString("Student Name");
+            List<Student> students = new ArrayList<>();
+
+            for (var student : this.students) {
+                if (student.getName().toUpperCase().contains(name.toUpperCase())) {
+                    students.add(student);
+                }
+            }
+
+            if (!students.isEmpty()) {
+                return students;
+            }
+            System.out.println("Student is not existed");
+            if (!repeat) {
+                return null;
+            }
+        }
+    }
 
 }
