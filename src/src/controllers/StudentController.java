@@ -12,12 +12,12 @@ import java.util.List;
 import src.models.Student;
 
 public class StudentController implements Controller<Student> {
-    
+
     private static StudentController instance;
-    
+
     private List<Student> students;
     private File studentContainer;
-    
+
     public static StudentController getInstance() {
         try {
             if (StudentController.instance == null) {
@@ -25,22 +25,22 @@ public class StudentController implements Controller<Student> {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        } 
+        }
         return StudentController.instance;
     }
 
     private StudentController() {
         this.students = new ArrayList<>();
         this.studentContainer = new File("student.dat");
-        
+
         if (!studentContainer.exists()) {
             this.initData();
         }
-        
+
         this.loadData();
-        
+
     }
-    
+
     public Student get(String id) {
         for (var student : students) {
             if (student.getId().equals(id)) {
@@ -49,27 +49,27 @@ public class StudentController implements Controller<Student> {
         }
         return null;
     }
-    
+
     public List<Student> getByName(String name) {
         List<Student> s = new ArrayList<>();
-        
+
         for (var student : this.students) {
             if (student.getName().toUpperCase().contains(name.toUpperCase())) {
                 s.add(student);
             }
         }
-        
+
         // trả về mảng tạm các student trùng tên
         return s;
     }
-    
+
     @Override
     public void loadData() {
        try (FileInputStream fis = new FileInputStream(studentContainer);
             ObjectInputStream ois = new ObjectInputStream(fis)) {
-           
+
            int counter = 0;
-           
+
            while (true) {
                try {
                   Student t = (Student) ois.readObject();
@@ -80,9 +80,9 @@ public class StudentController implements Controller<Student> {
                    break;
                }
            }
-           
+
            System.out.println("Data loaded successfully with " + counter + " object(s).");
-           
+
        } catch (IOException | ClassNotFoundException ex) {
            ex.printStackTrace();
        }
@@ -94,20 +94,20 @@ public class StudentController implements Controller<Student> {
             studentContainer.createNewFile();
             FileOutputStream fos = new FileOutputStream(studentContainer);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            
+
             Student[] t = getExampleData();
-            
+
             for (var student : t) {
                 System.out.println("WRITE: " + student.toString());
                 oos.writeObject(student);
             }
-            
+
             oos.close();
             fos.close();
-            
-            System.out.println("Data initialization completed with " 
+
+            System.out.println("Data initialization completed with "
                 + t.length + " written objects");
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -130,11 +130,11 @@ public class StudentController implements Controller<Student> {
     public int size() {
         return students.size();
     }
-    
+
     public void show() {
         System.out.println("DANH SACH SINH VIEN ");
         for (Student s : this.students) {
             System.out.println(s.getId() + " \t " + s.getName());
         }
-    } 
+    }
 }
