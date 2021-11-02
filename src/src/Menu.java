@@ -121,7 +121,7 @@ public class Menu {
     // ========================================================================
 
     public void afterFunction() {
-        InjectionController.getInstance().initData();
+        this.injections.save();
     }
 
     // ========================================================================
@@ -144,7 +144,7 @@ public class Menu {
         this.injections.delete();
     }
     public void s6(int pseudo) {
-        this.injections.searchWihtID();
+        this.injections.searchWithID();
     }
     public void s7(int pseudo) {
         this.injections.searchWithName();
