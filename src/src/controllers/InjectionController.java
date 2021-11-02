@@ -116,11 +116,9 @@ public class InjectionController implements Controller<Injection> {
             return;
         }
         
-        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |           2nd place          |");
-        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|------------------------------|");
-        
-        //injections.forEach(System.out::println);
-        
+        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
+        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|----------------------------------|");
+
         for (Injection i : injections) {
             if (i != null)
                 System.out.println(i);
@@ -149,12 +147,15 @@ public class InjectionController implements Controller<Injection> {
         List<Student> students = inputStudentByName(false);
         if (students == null) {
             System.out.println("Student with given name is not existed");
+            return;
         }
         
         List<Injection> t = new ArrayList<>();
         
-        
         for (var student : students) {
+            if (student != null) {
+                System.out.println(student.getId() + " " + student.getName());
+            }
             t.add(this.getByStudent(student.getId()));
         }
         

@@ -53,11 +53,7 @@ public class StudentController implements Controller<Student> {
     public List<Student> getByName(String name) {
         List<Student> s = new ArrayList<>();
         
-        // duyệt mảng các student và lấy những student trùng tên bỏ vào mảng tạm
         for (var student : this.students) {
-            
-            // uppercase để so sánh không phân biệt hoa thường
-            // contain để kiểm tra cả 3 vị trí tên đệm, tên lót, tên 
             if (student.getName().toUpperCase().contains(name.toUpperCase())) {
                 s.add(student);
             }

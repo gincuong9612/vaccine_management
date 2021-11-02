@@ -19,7 +19,9 @@ public class VaccineManagement {
     }
     
     public static void tester() {
-        VaccineManagement.invoker();
+        System.out.println(new StringBuilder("Hello").hashCode());
+        System.out.println("System".hashCode());
+        System.out.println(new StringBuilder("Hello").hashCode());
     }
     
     public static void invoker() {

@@ -158,9 +158,9 @@ public class Menu {
     }
     public void s8(int pseudo) {
         InjectionController.getInstance().initData();
-        System.out.println("Done");
     }
     public void s9(int pseudo) {
         InjectionController.getInstance().encryptData();
+        System.out.println("Done");
     }
 } 
