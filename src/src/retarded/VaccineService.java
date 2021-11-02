@@ -46,7 +46,7 @@ public class VaccineService {
             if (v != null) {
                 return v;
             }
-            System.out.println("Vaccine is not existed");
+            System.out.println("Vaccine ID is not existed");
             if (!repeat) {
                 return null;
             }

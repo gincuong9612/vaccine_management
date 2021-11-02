@@ -29,7 +29,6 @@ public class InjectionService {
             Student student = null;
             Injection injection;
             Vaccine vaccine = null;
-            // get student from input
             while (true) {
 
                 student = students.getFromInput(true);
@@ -45,8 +44,6 @@ public class InjectionService {
 
             System.out.println("FIRST INJECTION INFORMATION");
 
-            vaccine = vaccines.getFromInput(true);
-
             String id;
             while (true) {
                 id = Utilities.inputFilledString("Injection ID");
@@ -57,6 +54,8 @@ public class InjectionService {
                 }
                 System.out.println("Injection ID has been already existed");
             }
+            
+            vaccine = vaccines.getFromInput(true);
 
             LocalDate firstInjectionDate = Utilities.inputDate("Injected date");
             String firstLocation = Utilities.inputString("Injected location");
@@ -103,7 +102,7 @@ public class InjectionService {
             injection = this.get(id);
 
             if (injection == null) {
-                System.out.println("Injection ID is not existed!! Please try again");
+                System.out.println("Injection ID is not existed!!");
                 return;
             }
             if (this.isInjectable(injection)) {
@@ -154,7 +153,7 @@ public class InjectionService {
         System.out.println("Delete injection '" + i.getId() + "' successfully");
     }
 
-    public void search() {
+    public void searchWihtID() {
         Student student = students.getFromInput(false);
         if (student == null) {
             return;
@@ -164,9 +163,9 @@ public class InjectionService {
             System.out.println("There is no injection.");
             return;
         }
-        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
-        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|----------------------------------|");
-        System.out.println(t);
+        System.out.println("| Injection ID |  Student ID  |    Student Name    |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
+        System.out.println("|--------------|--------------|--------------------|--------------|----------|-------------------------|----------|----------------------------------|");
+        System.out.println(t);                             
     }
 
     public void searchWithName() {
@@ -194,8 +193,8 @@ public class InjectionService {
             return;
         }
 
-        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
-        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|----------------------------------|");
+        System.out.println("| Injection ID |  Student ID  |    Student Name    |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
+        System.out.println("|--------------|--------------|--------------------|--------------|----------|-------------------------|----------|----------------------------------|");
 
         for (Injection i : injections) {
             if (i != null)
@@ -261,8 +260,8 @@ public class InjectionService {
             System.out.println("Nothing to print");
             return;
         }
-        System.out.println("| Injection ID |  Student ID  | Student Name |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
-        System.out.println("|--------------|--------------|--------------|--------------|----------|-------------------------|----------|----------------------------------|");
+        System.out.println("| Injection ID |  Student ID  |    Student Name    |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
+        System.out.println("|--------------|--------------|--------------------|--------------|----------|-------------------------|----------|----------------------------------|");
 
         for (Injection i : injections) {
             if (i != null)

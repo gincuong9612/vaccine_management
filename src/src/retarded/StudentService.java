@@ -15,13 +15,13 @@ public class StudentService {
 
     public Student[] getExampleData() {
         return new Student[]{
-            new Student("ST002", "An"),
-            new Student("ST003", "Anh"),
-            new Student("ST001", "Binh"),
-            new Student("ST004", "Bao"),
-            new Student("ST005", "Cuong"),
-            new Student("ST007", "Dung"),
-            new Student("ST006", "Giang")
+            new Student("ST001", "Nguyen Hoang Phuc"),
+            new Student("ST002", "Pham Quang Tuong"),
+            new Student("ST003", "Pham Quoc Hung"),
+            new Student("ST004", "Le Thi Ngoc Tran"),
+            new Student("ST005", "Le Quoc Cuong"),
+            new Student("ST006", "Tran Thuy Dung"),
+            new Student("ST007", "Nguyen Tien Giang")
         };
     }
 
@@ -50,7 +50,6 @@ public class StudentService {
             }
         }
 
-        // trả về mảng tạm các student trùng tên
         return s;
     }
 
@@ -62,7 +61,7 @@ public class StudentService {
             if (student != null) {
                 return student;
             }
-            System.out.println("Student is not existed");
+            System.out.println("Student ID is not existed");
             if (!repeat) {
                 return null;
             }

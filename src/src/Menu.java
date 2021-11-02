@@ -130,9 +130,9 @@ public class Menu {
         this.injections.show();
     }
     public void s2(int pseudo) {
-        this.vaccines.show();
-        System.out.println();
         this.students.show();
+        System.out.println();
+        this.vaccines.show();
     }
     public void s3(int pseudo) {
         this.injections.add();
@@ -144,7 +144,7 @@ public class Menu {
         this.injections.delete();
     }
     public void s6(int pseudo) {
-        this.injections.search();
+        this.injections.searchWihtID();
     }
     public void s7(int pseudo) {
         this.injections.searchWithName();

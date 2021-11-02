@@ -34,7 +34,7 @@ public class Injection implements Serializable {
     @Override
     public String toString() {
         return String.format(
-                "|%-14s|%-14s|%-14s|%-14s|%-10s|%-25s|%-10s|%-34s|",
+                "|%-14s|%-14s|%-20s|%-14s|%-10s|%-25s|%-10s|%-34s|",
                 this.id,
                 this.getStudent().getId(),
                 this.getStudent().getName(),

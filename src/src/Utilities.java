@@ -75,7 +75,7 @@ public class Utilities {
             try {
                 return Date.valueOf(date).toLocalDate();
             } catch (Exception ex) {
-                System.out.println("Invalid Date! Please try again");
+                System.out.println("Date must be true format! Please try again");
             }
         }
     }
