@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import src.Utilities;
 
 public class Injection implements Serializable {
-    
+
     private String id;
     private Student student;
     private Vaccine firstDose;
@@ -34,14 +34,14 @@ public class Injection implements Serializable {
     @Override
     public String toString() {
         return String.format(
-                "|%-14s|%-14s|%-14s|%-14s|%-10s|%-25s|%-10s|%-34s|", 
-                this.id, 
-                this.getStudent().getId(), 
+                "|%-14s|%-14s|%-14s|%-14s|%-10s|%-25s|%-10s|%-34s|",
+                this.id,
+                this.getStudent().getId(),
                 this.getStudent().getName(),
-                this.getFirstDose().getId(), 
-                this.getFormattedDate(this.firstDate), 
+                this.getFirstDose().getId(),
+                this.getFormattedDate(this.firstDate),
                 this.getFirstLocation(),
-                this.getFormattedDate(this.secondDate), 
+                this.getFormattedDate(this.secondDate),
                 this.getSecondLocation()
         );
     }
@@ -116,5 +116,5 @@ public class Injection implements Serializable {
         }
         return Utilities.toStringDate(date);
     }
-    
+
 }
