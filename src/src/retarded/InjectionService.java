@@ -24,6 +24,14 @@ public class InjectionService {
     private StudentService students = new StudentService();
     private VaccineService vaccines = new VaccineService();
 
+    public InjectionService() {
+        if (!injectionContainer.exists()) {
+            injections.addAll(List.of(this.getExampleData()));
+        }
+
+        this.save();
+    }
+
     public void add() {
         while (true) {
             Student student = null;
@@ -54,7 +62,7 @@ public class InjectionService {
                 }
                 System.out.println("Injection ID has been already existed");
             }
-            
+
             vaccine = vaccines.getFromInput(true);
 
             LocalDate firstInjectionDate = Utilities.inputDate("Injected date");
@@ -165,7 +173,7 @@ public class InjectionService {
         }
         System.out.println("| Injection ID |  Student ID  |    Student Name    |  Vaccine ID  | 1st date |        1st place        | 2nd date |             2nd place            |");
         System.out.println("|--------------|--------------|--------------------|--------------|----------|-------------------------|----------|----------------------------------|");
-        System.out.println(t);                             
+        System.out.println(t);
     }
 
     public void searchWithName() {
@@ -267,6 +275,38 @@ public class InjectionService {
             if (i != null)
                 System.out.println(i);
         }
+    }
+
+    public Injection[] getExampleData() {
+        return new Injection[] {
+            new Injection("INJECTION-001",
+                          students.get("ST002"),
+                          vaccines.get("Covid-V001"),
+                          "Benh vien Cho Ray",
+                          Utilities.toLocalDate("01/7/2021"),
+                          vaccines.get("Covid-V001"),
+                          "Trung tam Y te quan Binh Thanh",
+                          Utilities.toLocalDate("20/8/2021")
+            ),
+            new Injection("INJECTION-002",
+                          students.get("ST001"),
+                          vaccines.get("Covid-V002"),
+                          "Benh vien Thu Duc",
+                          Utilities.toLocalDate("03/7/2021"),
+                          vaccines.get("Covid-V002"),
+                          "Benh Vien Thu Duc",
+                          Utilities.toLocalDate("15/8/2021")
+            ),
+            new Injection("INJECTION-003",
+                          students.get("ST003"),
+                          vaccines.get("Covid-V002"),
+                          "Benh vien Thu Duc",
+                          Utilities.toLocalDate("03/7/2021"),
+                          null,
+                          null,
+                          null
+            )
+        };
     }
 
 }
