@@ -149,9 +149,9 @@ public class Menu {
     }
     public void s8(int pseudo) {
         this.injections.save();
+        System.out.println("Store data to file successfully!!! ");
     }
     public void s9(int pseudo) {
         this.injections.encryptData();
-        System.out.println("Done");
     }
 }
