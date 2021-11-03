@@ -112,9 +112,7 @@ public class Menu {
                  NoSuchMethodException |
                  SecurityException |
                  InvocationTargetException ex) {
-            //if (!(ex instanceof NoSuchMethodException)) {
                 ex.printStackTrace();
-            //}
         }
     }
 

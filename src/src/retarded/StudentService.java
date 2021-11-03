@@ -67,6 +67,7 @@ public class StudentService {
             }
         }
     }
+    
     public List<Student> getByNameFromInput(boolean repeat) {
         while (true) {
             String name = Utilities.inputFilledString("Student Name");

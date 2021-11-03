@@ -233,8 +233,6 @@ public class InjectionService {
             oos.close();
             fos.close();
 
-            // System.out.println("WRITTEN " + injections.size() + " OBJECTS");
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
